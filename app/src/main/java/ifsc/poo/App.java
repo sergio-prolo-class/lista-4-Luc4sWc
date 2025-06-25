@@ -3,8 +3,172 @@
  */
 package ifsc.poo;
 
-public class App {
-    public static void main(String[] args) {
+import edu.princeton.cs.algs4.Draw;
+import edu.princeton.cs.algs4.DrawListener;
+import ifsc.poo.Formas.*;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedList;
+
+public class App implements DrawListener {
+    private final Draw draw = new Draw();
+    private Color corAtual = Color.BLACK;
+    private double tamanho = 40;
+    private int formaSelecionada = 1;
+    private final int x = 1000;
+    private final int y = 600;
+    private boolean preenchido = true;
+    private final LinkedList<Figura> figuras = new LinkedList<>();
+
+    private void Desenhar(){
+        this.draw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.draw.setCanvasSize(this.x,this.y);
+        this.draw.setXscale(0,this.x);
+        this.draw.setYscale(0,this.y);
+        this.draw.enableDoubleBuffering();
     }
+
+    public void exibirTela(){
+        this.draw.show();
+    }
+
+    private void redesenhar() {
+        draw.clear();
+        for (Figura f : figuras) {
+            f.desenhar(draw);
+        }
+        draw.show();
+    }
+
+    private void moverTodas(double dx, double dy) {
+        for (Figura f : figuras) {
+            f.mover(dx, dy);
+        }
+    }
+
+    private void imprimirEstatisticas() {
+        double somaArea = 0;
+        double somaPerimetro = 0;
+
+        for (Figura f : figuras) {
+            somaArea += f.getArea();
+            somaPerimetro += f.getPerimetro();
+        }
+
+        int total = figuras.size();
+        double mediaArea = total > 0 ? somaArea / total : 0;
+
+        System.out.println("\n=== Estatísticas ===");
+        System.out.println("Total de figuras: " + total);
+        System.out.printf("Soma dos perímetros: %.2f\n", somaPerimetro);
+        System.out.printf("Área média: %.2f\n", mediaArea);
+    }
+
+    @Override
+    public void mousePressed(double x, double y) {
+        Figura novaFigura = null;
+        switch (formaSelecionada) {
+            case 1:
+                novaFigura = new Quadrado(x, y, tamanho,preenchido, corAtual);
+                break;
+            case 2:
+                novaFigura = new Circulo(x, y, tamanho / 2, preenchido, corAtual);
+                break;
+            case 3:
+                novaFigura = new Hexagono(x,y,tamanho, preenchido, corAtual);
+                break;
+            case 4:
+                novaFigura = new Pentagono(x,y,tamanho, preenchido, corAtual);
+                break;
+            default: return;
+        }
+        if (novaFigura != null) {
+            figuras.add(novaFigura);
+            redesenhar();
+        }
+    }
+
+    @Override
+    public void keyPressed(int keycode) {
+        switch (keycode) {
+            case 70: // F
+                if (preenchido) {
+                    System.out.println("Sem preenchimento");
+                    preenchido = false;
+                    break;
+                }
+                System.out.println("Com preenchimento");
+                preenchido = true;
+                break;
+
+            case 112: // F1
+                System.out.println("Figura: Quadrado");
+                formaSelecionada = 1; // Quadrado
+                break;
+            case 113: // F2
+                System.out.println("Figura: Circulo");
+                formaSelecionada = 2; // Círculo
+                break;
+            case 114: // F3
+                System.out.println("Figura: Hexágono");
+                formaSelecionada = 3; // Hexágono
+                break;
+            case 115: // F4
+                System.out.println("Figura: Pentagono");
+                formaSelecionada = 4; // Pentágono
+                break;
+
+            case 116: // F5
+                System.out.println("Cor: Preto");
+                corAtual = Color.BLACK;
+                break;
+            case 117: // F6
+                System.out.println("Cor: Azul");
+                corAtual = Color.BLUE;
+                break;
+            case 118: // F7
+                System.out.println("Cor: Vermelho");
+                corAtual = Color.RED;
+                break;
+            case 119: // F8
+                System.out.println("Cor: Amarelo");
+                corAtual = Color.YELLOW;
+                break;
+
+            case 81: // Q - diminui tamanho
+                if (tamanho > 10) tamanho -= 10;
+                System.out.println("Tamanho: " + tamanho);
+                break;
+            case 87: // W - aumenta tamanho
+                if (tamanho < 300) tamanho += 10;
+                System.out.println("Tamanho: " + tamanho);
+                break;
+
+            case 67: // C - limpa
+                figuras.clear();
+                draw.clear();
+                draw.show();
+                break;
+
+            case 80: // P - imprime estatísticas
+                imprimirEstatisticas();
+                break;
+
+            case 37: moverTodas(-10, 0); break; // Esquerda
+            case 38: moverTodas(0, +10); break; // Cima
+            case 39: moverTodas(+10, 0); break; // Direita
+            case 40: moverTodas(0, -10); break; // Baixo
+        }
+        redesenhar();
+    }
+
+
+    public static void main(String[] args) {
+        App app = new App();
+        app.Desenhar();
+        app.draw.addListener(app);
+        app.exibirTela();
+    }
+
 }
