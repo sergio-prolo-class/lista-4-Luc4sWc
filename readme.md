@@ -51,8 +51,6 @@ Projeto de Programação Orientada a Objetos em Java que implementa um editor vi
 ```bash
 javac -cp .:algs4.jar ifsc/poo/*.java ifsc/poo/Formas/*.java
 ```
----
-
 ### Execução
 
 ```bash
