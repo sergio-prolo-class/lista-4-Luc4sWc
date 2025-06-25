@@ -155,10 +155,10 @@ public class App implements DrawListener { //polimorfismo da biblioteca Draw
                 imprimirEstatisticas();
                 break;
 
-            case 37: moverTodas(-10, 0); break; // Esquerda
-            case 38: moverTodas(0, +10); break; // Cima
-            case 39: moverTodas(+10, 0); break; // Direita
-            case 40: moverTodas(0, -10); break; // Baixo
+            case 37: moverTodas(+10, 0); break; // Esquerda
+            case 38: moverTodas(0, -10); break; // Cima
+            case 39: moverTodas(-10, 0); break; // Direita
+            case 40: moverTodas(0, +10); break; // Baixo
         }
         redesenhar();
     }
