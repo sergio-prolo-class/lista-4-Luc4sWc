@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 
-public class App implements DrawListener {
+public class App implements DrawListener { //polimorfismo da biblioteca Draw
     private final Draw draw = new Draw();
     private Color corAtual = Color.BLACK;
     private double tamanho = 40;
