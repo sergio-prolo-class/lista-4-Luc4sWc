@@ -62,3 +62,4 @@ java -cp .:algs4.jar ifsc.poo.App
 
 # Preview
 
+![Image](https://github.com/user-attachments/assets/4515c7ff-6116-4128-a66d-be5052449811)
