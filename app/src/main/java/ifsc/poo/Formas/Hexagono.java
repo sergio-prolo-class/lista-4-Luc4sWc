@@ -5,17 +5,14 @@ import java.awt.*;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class Hexagono implements Figura {
+public class Hexagono extends FormaAbstrata {
     private double []x = new double [6];
     private double []y = new double [6];
     private final double lado;
-    private boolean preenchido;
-    private Color cor;
 
     public Hexagono(double centroX, double centroY, double halflength, boolean preenchido, Color cor) {
+        super(centroX,centroY,preenchido,cor); //aqui usei polimorfismo !
         this.lado = halflength;
-        this.preenchido = preenchido;
-        this.cor = cor;
 
         for (int i = 0; i < 6; i++) {
             double angle = Math.toRadians(60 * i);

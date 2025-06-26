@@ -7,19 +7,16 @@ import java.awt.*;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class Pentagono implements Figura{
+public class Pentagono extends FormaAbstrata {
     private final double []x = new double [5];
     private final double []y =  new double [5];
     private final double lado;
-    private final boolean preenchido;
-    private final Color cor;
     private final double x1;
     private final double y1;
 
     public Pentagono(double centroX, double centroY, double halflength, boolean preenchido, Color cor) {
+       super(centroX,centroY,preenchido,cor); //aqui usei polimorfismo !
        this.lado = halflength;
-       this.cor = cor;
-       this.preenchido = true;
 
         for (int i = 0; i < 5; i++) {
             double angle = Math.toRadians(72 * i);

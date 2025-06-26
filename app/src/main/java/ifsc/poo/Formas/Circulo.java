@@ -4,29 +4,23 @@ import edu.princeton.cs.algs4.Draw;
 import java.awt.*;
 import static java.lang.Math.PI;
 
-public class Circulo implements Figura {
-    private double x;
-    private double y;
+public class Circulo extends FormaAbstrata {
     private final double radius;
-    private boolean preenchido;
-    private Color cor;
 
     public Circulo(double x, double y, double radius, boolean preenchido, Color cor) {
-        this.x = x;
-        this.y = y;
+        super(x,y,preenchido,cor); //aqui usei polimorfismo !
         this.radius = radius;
-        this.preenchido = preenchido;
-        this.cor = cor;
     }
 
     @Override
     public void desenhar(Draw d) {
-        d.setPenColor(Color.BLACK);
         if (preenchido) {
+            d.setPenColor(Color.BLACK);
             d.filledCircle(this.x, this.y, this.radius);
             d.setPenColor(cor);
             d.filledCircle(this.x, this.y, this.radius/1.1);
         } else {
+            d.setPenColor(cor);
             d.circle(this.x, this.y, this.radius);
         }
     }

@@ -2,31 +2,25 @@ package ifsc.poo.Formas;
 import edu.princeton.cs.algs4.Draw;
 import java.awt.*;
 
-public class Quadrado implements Figura {
-    private double x;
-    private double y;
+public class Quadrado extends FormaAbstrata {
     private final double lado;
-    private boolean preenchido;
-    private Color cor;
 
     public Quadrado(double x, double y, double halflength, boolean preenchido, Color cor) {
-        this.x = x;
-        this.y = y;
+        super(x,y,preenchido,cor); //aqui usei polimorfismo !
         this.lado = halflength;
-        this.preenchido = preenchido;
-        this.cor = cor;
     }
 
 
     @Override
     public void desenhar(Draw d) {
-        d.setPenColor(Color.BLACK);
         if (preenchido) {
+            d.setPenColor(Color.BLACK);
             d.filledSquare(this.x,this.y,this.lado);
             d.setPenColor(cor);
             d.filledSquare(this.x, this.y,this.lado/1.1);
         } else {
-            d.square(this.x, this.y, this.lado/1.1);
+            d.setPenColor(cor);
+            d.square(this.x, this.y, this.lado);
         }
     }
 
