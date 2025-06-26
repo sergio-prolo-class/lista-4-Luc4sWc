@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Draw;
 import java.awt.*;
 import static java.lang.Math.PI;
 
-public class Circulo implements Figura { //aqui usei polimorfismo !
+public class Circulo implements Figura {
     private double x;
     private double y;
     private final double radius;

@@ -5,7 +5,7 @@ import java.awt.*;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class Hexagono implements Figura { //aqui usei polimorfismo !
+public class Hexagono implements Figura {
     private double []x = new double [6];
     private double []y = new double [6];
     private final double lado;

@@ -19,7 +19,7 @@ public class App implements DrawListener { //polimorfismo da biblioteca Draw
     private final int x = 1000;
     private final int y = 600;
     private boolean preenchido = true;
-    private final LinkedList<Figura> figuras = new LinkedList<>();
+    private final LinkedList<Figura> figuras = new LinkedList<>(); //aqui usei polimorfismo !
 
     private void Desenhar(){
         this.draw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

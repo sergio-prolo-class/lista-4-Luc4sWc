@@ -2,7 +2,7 @@ package ifsc.poo.Formas;
 import edu.princeton.cs.algs4.Draw;
 import java.awt.*;
 
-public class Quadrado implements Figura { //aqui usei polimorfismo !
+public class Quadrado implements Figura {
     private double x;
     private double y;
     private final double lado;

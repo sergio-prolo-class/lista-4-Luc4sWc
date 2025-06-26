@@ -7,7 +7,7 @@ import java.awt.*;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
-public class Pentagono implements Figura{ //aqui usei polimorfismo !
+public class Pentagono implements Figura{
     private final double []x = new double [5];
     private final double []y =  new double [5];
     private final double lado;
