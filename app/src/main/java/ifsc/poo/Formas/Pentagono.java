@@ -8,8 +8,8 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class Pentagono extends FormaAbstrata {
-    private final double []x = new double [5];
-    private final double []y =  new double [5];
+    private final double []vert_x = new double [5];
+    private final double []vert_y =  new double [5];
     private final double lado;
     private final double x1;
     private final double y1;
@@ -20,8 +20,8 @@ public class Pentagono extends FormaAbstrata {
 
         for (int i = 0; i < 5; i++) {
             double angle = Math.toRadians(72 * i);
-            x[i] = centroX + lado * Math.cos(angle);
-            y[i] = centroY + lado * Math.sin(angle);
+            vert_x[i] = centroX + lado * Math.cos(angle);
+            vert_y[i] = centroY + lado * Math.sin(angle);
         }
         this.x1 = centroX;
         this.y1 = centroY;
@@ -29,7 +29,7 @@ public class Pentagono extends FormaAbstrata {
 
     public double getRaio() {
         // Distância do centro ao primeiro vértice
-        return sqrt(pow(this.x[0] - this.x1, 2) + pow(this.y[0] - this.y1, 2));
+        return sqrt(pow(this.vert_x[0] - this.x1, 2) + pow(this.vert_y[0] - this.y1, 2));
     }
 
 
@@ -37,19 +37,19 @@ public class Pentagono extends FormaAbstrata {
     public void desenhar(Draw d) {
         d.setPenColor(cor);
         if (preenchido) {
-            d.filledPolygon(this.x,this.y);
+            d.filledPolygon(this.vert_x,this.vert_y);
             d.setPenColor(Color.black);
-            d.polygon(this.x, this.y);
+            d.polygon(this.vert_x, this.vert_y);
         } else {
-            d.polygon(this.x, this.y);
+            d.polygon(this.vert_x, this.vert_y);
         }
     }
 
     @Override
     public void mover(double dx, double dy) {
         for (int i = 0; i < 5; i++) {
-            this.x[i] += dx;
-            this.y[i] += dy;
+            this.vert_x[i] += dx;
+            this.vert_y[i] += dy;
         }
     }
 
