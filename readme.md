@@ -1,6 +1,8 @@
-# Diagrama UML
+# 🗺️ Diagrama UML
 
+![Image](https://github.com/user-attachments/assets/95a48990-c05e-41bb-b7c6-6c2e0256c479)
 
+---
 
 # 🎨 Editor Interativo de Figuras Geométricas
 
